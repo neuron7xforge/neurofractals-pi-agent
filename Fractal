@@ -1,0 +1,35 @@
+# === Core Logic Summary of NeuroFractal Quantum Trading System ===
+
+# 1. Fractal Analysis
+cwt_result = np.abs(cwt(window, morlet2, FRACTAL_SCALES))
+
+# 2. Kuramoto Phase Synchronization
+R = np.abs(np.mean(np.exp(1j * phases)))
+
+# 3. Delta Entropy
+delta_H = current_entropy - previous_entropy
+
+# 4. Ollivier–Ricci Curvature
+kappa = 1 - wasserstein_distance(mu_x, mu_y) / d if d > 0 else 0
+
+# 5. Topological Instability Measure (ISM)
+ISM = eta * (H_prime / E_topo) if E_topo != 0 else 0
+
+# 6. π-Agent Reflexive Mutation
+if self.detect_instability(state):
+    candidate = self.mutate()
+    if candidate.is_profitable(state):
+        self.memory.append(candidate.rule)
+
+# 7. Neurochemical Modulation
+self.levels[NeuroTransmitter.DOPAMINE] = np.clip(
+    0.85 * self.levels[NeuroTransmitter.DOPAMINE] +
+    0.15 * (np.tanh(pnl * 2) * (1 if market_state == "TRENDING" else 0.5)), 0, 1)
+
+self.levels[NeuroTransmitter.CORTISOL] = np.clip(
+    0.8 * self.levels[NeuroTransmitter.CORTISOL] +
+    0.2 * (volatility ** 1.5 + (0.5 if pnl < 0 else 0)), 0, 1)
+
+# 8. QuantumFuzzy Decision Model
+prediction = self.model.predict(features.reshape(1, -1), verbose=0)
+action = ["BUY", "SELL", "HOLD"][np.argmax(prediction)]
